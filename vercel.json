@@ -1,0 +1,30 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/badges",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/cron/badges",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "installCommand": "npm i -g pnpm && pnpm install",
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}

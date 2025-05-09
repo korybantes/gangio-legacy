@@ -1,0 +1,55 @@
+// Firestore security rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Common functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Messages collection
+    match /messages/{messageId} {
+      // Anyone can read messages
+      allow read: if isSignedIn();
+      
+      // Only the author can create messages
+      allow create: if isSignedIn() && 
+                     request.resource.data.authorId == request.auth.uid;
+      
+      // Only the author can update their messages
+      allow update: if isSignedIn() && 
+                     resource.data.authorId == request.auth.uid;
+      
+      // Only the author can delete their messages
+      allow delete: if isSignedIn() && 
+                     resource.data.authorId == request.auth.uid;
+    }
+    
+    // Typing indicators collection
+    match /typing/{typingId} {
+      // Anyone can read typing indicators
+      allow read: if isSignedIn();
+      
+      // Only the user can create/update their typing status
+      allow create, update: if isSignedIn() && 
+                              request.resource.data.userId == request.auth.uid;
+      
+      // Only the user can delete their typing status
+      allow delete: if isSignedIn() && 
+                      resource.data.userId == request.auth.uid;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can read other users' profiles
+      allow read: if isSignedIn();
+      
+      // Users can only modify their own profile
+      allow write: if isOwner(userId);
+    }
+  }
+}

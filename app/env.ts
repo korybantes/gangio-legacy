@@ -1,0 +1,1 @@
+export const LIVEKIT_URL = 'wss://gangio-1iknik3h.livekit.cloud'; 

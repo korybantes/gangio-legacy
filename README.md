@@ -20,21 +20,6 @@ Gangio is a full-featured chat and communication platform inspired by Discord. I
 *   **Authentication:** NextAuth.js (implied for session management and providers like Steam)
 
 
-## Environment Var.
-* MONGODB_URI=mongodb+srv://ertact:Ertacdemm111@project0-db.ahspvi3.mongodb.net/?retryWrites=true&w=majority&appName=project0-db
-NEXT_DISABLE_OPTIMIZE_CSS=true
-LIVEKIT_URL=wss://gangio-1iknik3h.livekit.cloud
-LIVEKIT_API_KEY=APIBXyoN7WvttQT
-LIVEKIT_API_SECRET=d7LUGmuU7w222rE6TOXS9SOs3Duooi5zKbiEwffMbqg
-NEXT_PUBLIC_LIVEKIT_URL=wss://gangio-1iknik3h.livekit.cloud
-TENOR_API_KEY=AIzaSyB2X459F0-KL-EvHmwHCNlJcKHSFuiD4GI
-MONGODB_DB_NAME=project0-db
-
-# Steam Credentials
-STEAM_API_KEY=470E0D7626517760C100B903BD7AA412
-# Add NEXTAUTH_URL here once provided by the user
-# Example: NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_URL=https://gangio.vercel.app
 ## Database
 
 The application utilizes MongoDB for data storage. Key collections include:
